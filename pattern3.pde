@@ -5,12 +5,12 @@ void pattern3(){
   x3=remove*remove;
   size=800-remove*remove*2;
   if(size<=0 || size>=800){
-    goingUp=!goingUp;
+    goingUp2=!goingUp2;
   }
-  if(goingUp){
-    remove+=0.27;
+  if(goingUp2){
+    remove+=0.24;
   }
   else{
-    remove-=0.27;
-  }
+    remove-=0.24;
+  }  
 }
