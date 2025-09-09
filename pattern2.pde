@@ -1,10 +1,16 @@
 
 void pattern2(){
   noStroke();
-  fill(73, 212, 131);
   while(y2<=900){
-    rect(x2, y2, 50, 50);
-    triangle(x2+50, y2-25, x2+50, y2+75, x2+100, y2+25);
+    for(int i=0;i<5;i++){
+      fill(73-i*10, 212-i*30, 131-i*20);
+      pushMatrix();
+      translate(x2+i*10, y2+i*5);
+      scale(1-i*0.2);
+      rect(0, 0, 50, 50);
+      triangle(+50, -25, +50, +75, 100, +25);
+      popMatrix();
+    }
     x2+=100;
     if(x2==800){
       y2+=100;

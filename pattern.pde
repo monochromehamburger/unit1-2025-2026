@@ -4,7 +4,7 @@ int y=0;
 int x2=0;
 int y2=0;
 float x3=0;
-float y3=0;
+float y3=790;
 float size=800;
 float remove=1;
 boolean goingUp=true;
@@ -16,7 +16,7 @@ void setup(){
 void draw(){
   if(page==1){
     noStroke();
-    fill(x/3, y/3, 100);
+    fill(x/3, y/3, 255);
     circle(400*cos(x)+400, 400*sin(y)+400, 100);
     circle(800-(400*cos(x)+400), (400*sin(y)+400), 100);
     circle(800-(400*cos(x)+400), 800-(400*sin(y)+400), 100);
@@ -57,7 +57,7 @@ void keyPressed(){
     x2=0;
     y2=0;
     x3=0;
-    y3=0;
+    y3=790;
     size=800;
     remove=1;
     goingUp2=true;
@@ -71,7 +71,7 @@ void keyPressed(){
     x2=0;
     y2=0;
     x3=0;
-    y3=0;
+    y3=790;
     size=800;
     remove=1;
     goingUp2=true;
