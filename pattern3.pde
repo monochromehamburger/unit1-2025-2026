@@ -4,16 +4,16 @@ void pattern3(){
   rect(y3, x3, 10, size);
   rect(x3, 790-y3, size, 10);
   rect(790-y3, x3, 10, size);
-  y3-=5;
+  y3-=1.25;
   x3=remove*remove;
   size=800-remove*remove*2;
   if(size<=0 || size>=800){
     goingUp2=!goingUp2;
   }
   if(goingUp2){
-    remove+=0.12;
+    remove+=0.03;
   }
   else{
-    remove-=0.12;
+    remove-=0.03;
   }  
 }
