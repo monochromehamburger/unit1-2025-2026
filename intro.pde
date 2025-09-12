@@ -18,9 +18,10 @@ void intro(){
     remove-=0.03;
   }
   fill(200, 100, 30);
-  rect(200, 300, 400, 200);
+  //rect(200, 300, 400, 200);
   fill(0);
-  textSize(50);
-  text("Color Game", 200, 350);
-  text("Press A to start  ", 200, 400);
+  textSize(100);
+  textAlign(CENTER);
+  text("Color Game", 400, 350);
+  text("Press A to start  ", 400, 450);
 }
