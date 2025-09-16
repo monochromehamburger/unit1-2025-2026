@@ -11,5 +11,20 @@ void intro(){
   textSize(100);
   textAlign(CENTER);
   text("Color Game", 400, 350);
-  text("Press A to start  ", 400, 450);
+  
+  fill(80, 53, 80);
+  if(dist(buttonX, buttonY, mouseX, mouseY)<=50){
+    fill(0);
+  }
+  circle(buttonX, buttonY, 100);
+  textSize(50);
+  fill(255);
+  text("start", buttonX, buttonY);
+  time++;
+  if(time==60){
+    time=0;
+    buttonX=random(0, 800);
+    buttonY=random(0, 800);
+  }
+  
 }
