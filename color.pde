@@ -25,6 +25,8 @@ PFont font;
 float buttonX;
 float buttonY;
 int time;
+int counter;
+
 void setup(){
   size(800, 800);
   fail = new SoundFile(this, "FAILURE.wav");
@@ -42,6 +44,7 @@ void setup(){
   textFont(font);
   buttonX=400;
   buttonY=400;
+  counter=30;
 }
 void draw(){
   if(mode==0){
@@ -55,7 +58,7 @@ void draw(){
   }
 }
 void mousePressed(){
-  println(mode+" "+buttonX+" "+buttonY+" "+mouseX+" "+mouseY);
+  //println(mode+" "+buttonX+" "+buttonY+" "+mouseX+" "+mouseY);
   if(dist(mouseX, mouseY, buttonX, buttonY)<=50 && mode!=1){
     begin();
   }
@@ -71,7 +74,7 @@ void begin(){
         matches=false;
         random=(int) random(0, 11);
         while (random==chosenColor) {
-          random=(int)random(0, 11);
+          random=(int) random(0, 11);
         }
       }
       timer=60;
