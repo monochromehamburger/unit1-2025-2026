@@ -3,7 +3,7 @@ void lose(){
   highscore=max(score, highscore);
   gameStart=false;
   counter++;
-  if((counter/60)%2==0){
+  if(time/30==0){
     rows();
     columns();
   }
@@ -23,7 +23,7 @@ void lose(){
   text("start", buttonX, buttonY);
   time++;
   if(time==60){
-    time=0;
+    time=1 ;
     buttonX=random(0, 800);
     buttonY=random(0, 800);
   }
@@ -32,7 +32,6 @@ void display(){
   fill(0);
   textSize(100);
   text("you lost skill issue", 400, 225);
-  text("Press A to restart", 400, 325);
   text("Your score: "+score, 400, 425);
   text("Highscore: "+highscore, 400, 525);
 }
