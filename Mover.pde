@@ -1,27 +1,27 @@
 class Mover {
   float x, y;
   int count;
-  int r;
-  int g;
-  int b;
-  
   boolean finished=false;
   Mover(int count) {
-    x=width/2;
+    x=width/2+100;
     y=height/2;
     this.count=count;
-    r=(int) random(0, 256);
-    g=(int) random(0, 256);
-    b=(int) random(0, 256);
   }
   void show() {
     stroke(0);
-    fill(r, g, b);
+    fill(255);
     strokeWeight(5);
     circle(x, y, 50);
+    fill(0);
+    textSize(25);
+    text(count, x-10, y);
   }
   void act() {
     x=x+random(-10, 10);
     y=y+random(-10, 10);
+    if(x<225 || x>975 || y<25 || y>775){
+      finished=true;
+      deathOrder.add(count);
+    }
   }
 }
