@@ -1,20 +1,24 @@
 class Mover {
   float x, y;
   int count;
-  float size;
+  int r;
+  int g;
+  int b;
   
   boolean finished=false;
   Mover(int count) {
     x=width/2;
     y=height/2;
     this.count=count;
-    size=random(50, 150);
+    r=(int) random(0, 256);
+    g=(int) random(0, 256);
+    b=(int) random(0, 256);
   }
   void show() {
     stroke(0);
-    fill(255);
+    fill(r, g, b);
     strokeWeight(5);
-    circle(x, y, size);
+    circle(x, y, 50);
   }
   void act() {
     x=x+random(-10, 10);
