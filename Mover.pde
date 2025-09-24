@@ -19,9 +19,33 @@ class Mover {
   void act() {
     x=x+random(-10, 10);
     y=y+random(-10, 10);
-    if(x<225 || x>975 || y<25 || y>775){
+    if(x<225+xChange/2 || x>975-xChange/2 || y<25+xChange/2 || y>775-xChange/2){
       finished=true;
       deathOrder.add(count);
+    }
+    if(dist(x, y, 300, 100)<=25){
+      x=width/2+100;
+      y=height/2;
+      stroke(14, 201, 56);
+      line(300, 100, width/2+100, height/2);
+    }
+    if(dist(x, y, 300, 700)<=25){
+      x=width/2+100;
+      y=height/2;
+      stroke(14, 201, 56);
+      line(300, 700, width/2+100, height/2);
+    }
+    if(dist(x, y, 900, 700)<=25){
+      x=width/2+100;
+      y=height/2;
+      stroke(14, 201, 56);
+      line(900, 700, width/2+100, height/2);
+    }
+    if(dist(x, y, 900, 100)<=25){
+      x=width/2+100;
+      y=height/2;
+      stroke(14, 201, 56);
+      line(900, 100, width/2+100, height/2);
     }
   }
 }
