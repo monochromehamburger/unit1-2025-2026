@@ -37,6 +37,7 @@ class Button{
     }
     textSize(w/4);
     text(text, x, y);
+    if(mouseReleased==true) println(mouseReleased);
     if(mouseReleased && mouseX>x-w/2 && mouseX<x+w/2 && mouseY>y-h/2 && mouseY<y+h/2){
       clicked=true;
     }

@@ -1,8 +1,9 @@
 void click(){
-  mouseReleased=false  ;
+  mouseReleased=false;
   if(mousePressed) wasPressed=true;
-  if(wasPressed && !mousePressed){
+  if(wasPressed &&   mousePressed==false){
     mouseReleased=true;
     wasPressed=false;
   }
+  //println("you suck "+ mouseReleased+" "+wasPressed+" "+mousePressed);
 }
