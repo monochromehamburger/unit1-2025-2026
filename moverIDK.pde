@@ -6,6 +6,8 @@ int timer=0;
 int xChange=0;
 String event="";
 ArrayList<Integer> deathOrder=new ArrayList<>();
+ArrayList<Enemy> enemies=new ArrayList<>();
+ArrayList<deathBox> deathBoxes=new ArrayList<>();
 void setup(){
   size(1200, 800, P2D);
   movers=new Mover[n];
@@ -49,13 +51,13 @@ void draw(){
   circle(1100, 700, 25);
   circle(1100, 100, 25);
   
-  if(event.equals("Extra Danger")){
-    fill(255, 0, 0);
-    circle(800, 200, 50);
-    circle(800, 600, 50);
-    circle(1000, 400, 50);
-    circle(600, 400, 50);
-  }
+  //if(event.equals("Extra Danger")){
+  //  fill(255, 0, 0);
+  //  circle(800, 200, 50);
+  //  circle(800, 600, 50);
+  //  circle(1000, 400, 50);
+  //  circle(600, 400, 50);
+  //}
   
   float r=random(0,2000);
   if(r<1){
@@ -76,9 +78,29 @@ void draw(){
   else if(r<6){
     event="x2 Life Gain/Loss";
   }
-  else if(r<8){
-    event="Extra Danger";
+  if(random(0, 1000)<1){
+    enemies.add(new Enemy(200, 200, 2, 0, 25));
+    enemies.add(new Enemy(200, 600, 2, 0, 25));
+    enemies.add(new Enemy(width/2, -100, 0, 2, 25));
+    enemies.add(new Enemy(width/2+400, -100, 0, 2, 25));
   }
+  if(random(0, 500)<1){
+    deathBoxes.add(new deathBox(random(300, width), random(0, height), 200));
+  }
+  
+  for(int i=enemies.size()-1;i>=0;i--){
+    enemies.get(i).show();
+    if(enemies.get(i).alive==false){
+      enemies.remove(i);
+    }
+  }
+  for(int i=deathBoxes.size()-1;i>=0;i--){
+    deathBoxes.get(i).show();
+    if(deathBoxes.get(i).alive==false){
+      deathBoxes.remove(i);
+    }
+  }
+  fill(255);
   text("Current event:", 200, 50);
   text(event, 200, 150);
 }

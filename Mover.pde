@@ -1,11 +1,12 @@
 class Mover {
   float x, y;
+  PVector location;
   int count;
   int lives;
   boolean finished=false;
   Mover(int count) {
-    x=width/2+200;
-    y=height/2;
+    location= new PVector(width/2+200, height/2);
+
     this.count=count;
     lives=3;
   }
@@ -28,53 +29,52 @@ class Mover {
       fill(191, 13, 13);
     }
     strokeWeight(5);
-    circle(x, y, 50);
+    circle(location.x, location.y, 50);
     fill(0);
     textSize(25);
-    text(count, x-10, y);
+    text(count, location.x-10, location.y);
   }
   void act() {
-    x=x+random(-10, 10);
-    y=y+random(-10, 10);
+    location.add(new PVector(random(-10, 10), random(-10, 10)));
     
-    if((x<425+xChange/2 || x>1175-xChange/2 || y<25+xChange/2 || y>775-xChange/2)){
+    if((location.x<425+xChange/2 || location.x>1175-xChange/2 || location.y<25+xChange/2 || location.y>775-xChange/2)){
        loseLife();
     }
-    if(dist(x, y, 500, 100)<=25){
-      x=width/2+200;
-      y=height/2;
+    if(dist(location.x, location.y, 500, 100)<=25){
+      location.x=width/2+200;
+      location.y=height/2;
       stroke(14, 201, 56);
-      line(500, 100, x, y);
+      line(500, 100, location.x, location.y);
       if(event.equals("x2 Life Gain/Loss")){
         lives++;
       }
       lives++;
     }
-    if(dist(x, y, 500, 700)<=25){
-      x=width/2+200;
-      y=height/2;
+    if(dist(location.x, location.y, 500, 700)<=25){
+      location.x=width/2+200;
+      location.y=height/2;
       stroke(14, 201, 56);
-      line(500, 700, x, y);
+      line(500, 700, location.x, location.y);
       if(event.equals("x2 Life Gain/Loss")){
         lives++;
       }
       lives++;
     }
-    if(dist(x, y, 1100, 700)<=25){
-      x=width/2+200;
-      y=height/2;
+    if(dist(location.x, location.y, 1100, 700)<=25){
+      location.x=width/2+200;
+      location.y=height/2;
       stroke(14, 201, 56);
-      line(1100, 700, x,  y);
+      line(1100, 700, location.x,  location.y);
       if(event.equals("x2 Life Gain/Loss")){
         lives++;
       }
       lives++;
     }
-    if(dist(x, y, 1100, 100)<=25){
-      x=width/2+200;
-      y=height/2;
+    if(dist(location.x, location.y, 1100, 100)<=25){
+      location.x=width/2+200;
+      location.y=height/2;
       stroke(14, 201, 56);
-      line(1100, 100, x, y);      
+      line(1100, 100, location.x, location.y);      
       if(event.equals("x2 Life Gain/Loss")){
         lives++;
       }
@@ -82,29 +82,23 @@ class Mover {
     }
     
     
-    if((event.equals("Extra Danger")) && dist(x, y, 800, 200)<=50){
-       loseLife();
-    }
-    if((event.equals("Extra Danger")) && dist(x, y, 800, 600)<=50){
-       loseLife();
-    }
-    if((event.equals("Extra Danger")) && dist(x, y, 600, 400)<=50){
-       loseLife();
-    }
-    if((event.equals("Extra Danger")) && dist(x, y, 1000, 400)<=50){
-       loseLife();
-    }
     if(event.equals("North Wind")){
-      y-=0.5;
+      location.y-=0.5;
     }
     else if(event.equals("West Wind")){
-      x-=0.5;
+      location.x-=0.5;
     }
     else if(event.equals("East Wind")){
-      x+=0.5;
+      location.x+=0.5;
     }
     else if(event.equals("South Wind")){
-      y+=0.5;
+      location.y+=0.5;
+    }
+    
+    for(int i=0;i<enemies.size();i++){
+      if(dist(enemies.get(i).x, enemies.get(i).y, location.x, location.y)<25){
+        loseLife();
+      }
     }
   }
   
@@ -118,8 +112,8 @@ class Mover {
       deathOrder.add(count);
     }
     else{
-      x=width/2+200;
-      y=height/2;
+      location.x=width/2+200;
+      location.y=height/2;
     }
   }
 }

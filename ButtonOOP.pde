@@ -10,10 +10,13 @@ Button button;
 Button button2;
 Button button3;
 Button button4;
+Button button5;
 color bgColor=#483576;
 PImage i;
 PImage[] jif;
+PImage[] jif2;
 int jifLength;
+int jifLength2;
 void setup(){
   size(1000, 1000);
   button=new Button("idk", 500, 400, 200, 200, test, test2);
@@ -24,8 +27,14 @@ void setup(){
   jif=new PImage[jifLength+1];
   for(int i=0;i<20;i++){
     jif[i]=loadImage("frame_"+i+"_delay-0.1s.gif");
+  }  
+  jifLength2=56;
+  jif2=new PImage[jifLength2+1];
+  for(int i=0;i<57;i++){
+    jif2[i]=loadImage("frame_"+i+"_delay-0.03s.gif");
   }
   button4=new Button(jif, 200, 200, 200, 200, test5, test6);
+  button5=new Button(jif2, 200, 400, 200, 200, test5, test6);
 }
 void draw(){
   background(bgColor);
@@ -33,6 +42,7 @@ void draw(){
   button2.show();
   button3.show();
   button4.show();
+  button5.show();
   if(button.clicked){
     bgColor=button.highlight;
   }
@@ -41,6 +51,12 @@ void draw(){
   }
   if(button3.clicked){
     bgColor=button3.highlight;
+  }
+  if(button4.clicked){
+    bgColor=button4.highlight;
+  }
+  if(button5.clicked){
+    bgColor=button5.highlight;
   }
   click();
 }
