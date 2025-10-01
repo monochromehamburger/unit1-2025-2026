@@ -32,8 +32,8 @@ void draw() {
       for (int j=i+1; j<movers.length; j++) {
         float distance=dist(movers[i].location.x, movers[i].location.y, movers[j].location.x, movers[j].location.y);
         if (distance<=100 && movers[i].finished==false && movers[j].finished==false) {
-          //stroke(255, 255, 255, 100);
-          //line(movers[i].location.x, movers[i].location.y, movers[j].location.x, movers[j].location.y);
+          stroke(255, 255, 255, 100);
+          line(movers[i].location.x, movers[i].location.y, movers[j].location.x, movers[j].location.y);
           if (dist(movers[i].location.x+1, movers[i].location.y, movers[j].location.x, movers[j].location.y)>distance) {
             movers[i].location.x+=0.3;
             movers[j].location.x-=0.3;
@@ -108,7 +108,7 @@ void draw() {
     }
     enemies.add(new Enemy(ra, -100, 0, 2, 25));
   }
-  if (random(0, 100)<1) {
+  if (random(0, 400)<1) {
     deathBoxes.add(new deathBox(random(300, width), random(0, height), 200));
   }
 
