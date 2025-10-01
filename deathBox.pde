@@ -10,7 +10,7 @@ class deathBox{
     this.size=size;
     alive=true;
     timer=300;
-    if(random(0, 5)<1){
+    if(random(0, 4)<1){
       opposite=true;
     }
   }
@@ -50,7 +50,10 @@ class deathBox{
       if(timer==0){
         for(int i=0;i<50;i++){
           if(movers[i].finished==false && movers[i].location.x>x && movers[i].location.y>y && movers[i].location.x<x+size && movers[i].location.y<y+size){
-            movers[i].loseLife();
+            float temp1=movers[i].location.x;
+            float temp2=movers[i].location.y;
+            movers[i].gainLife();
+            line(temp1, temp2, width/2+200, height/2);
           }
         }
         alive=false;

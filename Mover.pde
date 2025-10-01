@@ -41,44 +41,24 @@ class Mover {
        loseLife();
     }
     if(dist(location.x, location.y, 500, 100)<=25){
-      location.x=width/2+200;
-      location.y=height/2;
       stroke(14, 201, 56);
+      gainLife();
       line(500, 100, location.x, location.y);
-      if(event.equals("x2 Life Gain/Loss")){
-        lives++;
-      }
-      lives++;
     }
     if(dist(location.x, location.y, 500, 700)<=25){
-      location.x=width/2+200;
-      location.y=height/2;
       stroke(14, 201, 56);
+      gainLife();
       line(500, 700, location.x, location.y);
-      if(event.equals("x2 Life Gain/Loss")){
-        lives++;
-      }
-      lives++;
     }
     if(dist(location.x, location.y, 1100, 700)<=25){
-      location.x=width/2+200;
-      location.y=height/2;
       stroke(14, 201, 56);
+      gainLife();
       line(1100, 700, location.x,  location.y);
-      if(event.equals("x2 Life Gain/Loss")){
-        lives++;
-      }
-      lives++;
     }
     if(dist(location.x, location.y, 1100, 100)<=25){
-      location.x=width/2+200;
-      location.y=height/2;
       stroke(14, 201, 56);
-      line(1100, 100, location.x, location.y);      
-      if(event.equals("x2 Life Gain/Loss")){
-        lives++;
-      }
-      lives++;
+      gainLife();
+      line(1100, 100, location.x, location.y); 
     }
     
     
@@ -94,7 +74,6 @@ class Mover {
     else if(event.equals("South Wind")){
       location.y+=0.5;
     }
-    
     for(int i=0;i<enemies.size();i++){
       if(dist(enemies.get(i).x, enemies.get(i).y, location.x, location.y)<25){
         loseLife();
@@ -115,5 +94,13 @@ class Mover {
       location.x=width/2+200;
       location.y=height/2;
     }
+  }
+  void gainLife(){
+      location.x=width/2+200;
+      location.y=height/2;  
+      if(event.equals("x2 Life Gain/Loss")){
+        lives++;
+      }
+      lives++;
   }
 }
