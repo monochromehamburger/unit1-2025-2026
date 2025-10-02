@@ -38,7 +38,7 @@ class Mover {
     location.add(new PVector(random(-10, 10), random(-10, 10)));
     
     if((location.x<425+xChange/2 || location.x>1175-xChange/2 || location.y<25+xChange/2 || location.y>775-xChange/2)){
-       loseLife();
+       loseLife(true);
     }
     if(dist(location.x, location.y, 500, 100)<=25){
       stroke(14, 201, 56);
@@ -76,12 +76,12 @@ class Mover {
     }
     for(int i=0;i<enemies.size();i++){
       if(dist(enemies.get(i).x, enemies.get(i).y, location.x, location.y)<25){
-        loseLife();
+        loseLife(true);
       }
     }
   }
   
-  void loseLife(){
+  void loseLife(boolean moveBack){
     lives--;
     if(event.equals("x2 Life Gain/Loss")){
       lives--;
@@ -91,8 +91,10 @@ class Mover {
       deathOrder.add(count);
     }
     else{
-      location.x=width/2+200;
-      location.y=height/2;
+      if(moveBack){      
+        location.x=width/2+200;
+        location.y=height/2;
+      }
     }
   }
   void gainLife(){

@@ -28,9 +28,9 @@ class deathBox{
       text("TIMER: "+(timer/60+1), x, y+50);
       timer--;
       if(timer==0){
-        for(int i=0;i<50;i++){
+        for(int i=0;i<n;i++){
           if(movers[i].finished==false && movers[i].location.x>x && movers[i].location.y>y && movers[i].location.x<x+size && movers[i].location.y<y+size){
-            movers[i].loseLife();
+            movers[i].loseLife(false);
           }
         }
         alive=false;
@@ -48,12 +48,9 @@ class deathBox{
       text("TIMER: "+(timer/60+1), x, y+50);
       timer--;
       if(timer==0){
-        for(int i=0;i<50;i++){
+        for(int i=0;i<n;i++){
           if(movers[i].finished==false && movers[i].location.x>x && movers[i].location.y>y && movers[i].location.x<x+size && movers[i].location.y<y+size){
-            float temp1=movers[i].location.x;
-            float temp2=movers[i].location.y;
             movers[i].gainLife();
-            line(temp1, temp2, width/2+200, height/2);
           }
         }
         alive=false;
