@@ -3,16 +3,20 @@ final int GAME=1;
 final int PAUSE=2;
 final int GAMEOVER=3;
 int mode=GAME;
-boolean upkey, downkey, leftkey, rightkey;
+boolean upkey, downkey, leftkey, rightkey, spacekey;
 Spaceship player1;
-void setup(){
-  size(1000, 1000, P2D);
+ArrayList<GameObject> objects;
+
+void setup() {
+  size(1500, 1000, P2D);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
   player1=new Spaceship();
+  objects = new ArrayList();
+  objects.add(player1);
 }
-void draw(){
-  if(mode==GAME){
+void draw() {
+  if (mode==GAME) {
     game();
   }
 }
