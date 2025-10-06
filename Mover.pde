@@ -42,22 +42,22 @@ class Mover {
     }
     if(dist(location.x, location.y, 500, 100)<=25){
       stroke(14, 201, 56);
-      gainLife();
+      gainLife(true);
       line(500, 100, location.x, location.y);
     }
     if(dist(location.x, location.y, 500, 700)<=25){
       stroke(14, 201, 56);
-      gainLife();
+      gainLife(true);
       line(500, 700, location.x, location.y);
     }
     if(dist(location.x, location.y, 1100, 700)<=25){
       stroke(14, 201, 56);
-      gainLife();
+      gainLife(true);
       line(1100, 700, location.x,  location.y);
     }
     if(dist(location.x, location.y, 1100, 100)<=25){
       stroke(14, 201, 56);
-      gainLife();
+      gainLife(true);
       line(1100, 100, location.x, location.y); 
     }
     
@@ -97,9 +97,12 @@ class Mover {
       }
     }
   }
-  void gainLife(){
+  void gainLife(boolean moveBack){
+    if(moveBack){
+    
       location.x=width/2+200;
       location.y=height/2;  
+    }
       if(event.equals("x2 Life Gain/Loss")){
         lives++;
       }

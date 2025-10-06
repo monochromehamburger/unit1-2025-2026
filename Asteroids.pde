@@ -14,6 +14,9 @@ void setup() {
   player1=new Spaceship();
   objects = new ArrayList();
   objects.add(player1);
+  for(int i=0;i<15;i++){
+    objects.add(new Asteroid());
+  }
 }
 void draw() {
   if (mode==GAME) {

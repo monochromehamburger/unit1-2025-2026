@@ -50,7 +50,7 @@ class deathBox{
       if(timer==0){
         for(int i=0;i<n;i++){
           if(movers[i].finished==false && movers[i].location.x>x && movers[i].location.y>y && movers[i].location.x<x+size && movers[i].location.y<y+size){
-            movers[i].gainLife();
+            movers[i].gainLife(false);
           }
         }
         alive=false;
