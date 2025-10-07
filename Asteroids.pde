@@ -17,9 +17,13 @@ void setup() {
   for(int i=0;i<15;i++){
     objects.add(new Asteroid());
   }
+  textAlign(CENTER);
 }
 void draw() {
   if (mode==GAME) {
     game();
+  }
+  else if(mode==GAMEOVER){
+    lose();
   }
 }

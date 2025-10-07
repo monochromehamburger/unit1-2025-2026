@@ -7,9 +7,15 @@ void game() {
     GameObject currentObject=objects.get(i);
     currentObject.act();
     currentObject.show();
-    if(currentObject.lives==0){
+    if(currentObject.lives<=0){
       objects.remove(i);
     }
     else i++;
   }
+  if(player1.lives<=0){
+    mode=GAMEOVER;
+  }
+  fill(255, 0, 0);
+  textSize(50);
+  text("Lives: "+player1.lives, 100, 120);
 }
