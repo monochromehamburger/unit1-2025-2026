@@ -2,6 +2,7 @@ class GameObject{
   PVector loc;
   PVector vel;
   int lives;
+  boolean isEnemy;
   float d;
   GameObject(float lx, float ly, float vx, float vy){
     loc=new PVector(lx, ly);

@@ -6,10 +6,21 @@ class Bullet extends GameObject{
     timer=120;
     d=10;
   }
+  Bullet(float x, float y, PVector target) {
+    super(new PVector(x, y), new PVector(target.x - x, target.y-y), 1);
+    vel.setMag(10);
+    timer=120;
+    d=10;
+  }
 
   void show() {
     fill(255);
-    stroke(255);
+    if(isEnemy==true){
+      stroke(255, 0, 0);
+    }
+    else{
+      stroke(255);
+    }
     strokeWeight(2);
     fill(19, 59, 100);
     circle(loc.x, loc.y, d);

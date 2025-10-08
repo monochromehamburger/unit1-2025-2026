@@ -34,14 +34,14 @@ class Spaceship extends GameObject{
     //println(dir+" "+vel+" "+loc);
    
     if (upkey){
-      vel.add(dir.x*3, dir.y*3);
+      vel.add(dir.x*2, dir.y*2);
       
     }
     if (leftkey){
       dir.rotate(-radians(3));
     }
     if (rightkey) dir.rotate(radians(3));
-    vel.setMag(vel.mag()*0.995);
+    vel.setMag(vel.mag()*0.99);
     wrapAround();
   }
   void shoot() {
@@ -56,7 +56,7 @@ class Spaceship extends GameObject{
     int i=0;
     while(i<objects.size()){
       GameObject obj = objects.get(i);
-      if(obj instanceof Asteroid){
+      if(obj instanceof Asteroid || obj.isEnemy==true){
         if(dist(loc.x, loc.y, obj.loc.x, obj.loc.y)<5+obj.d/2){
           lives-=obj.lives;
           obj.lives=0;
