@@ -1,6 +1,7 @@
 class Spaceship extends GameObject{
   PVector dir;
   int cooldown;
+  int invincibilityTimer=0;
   Spaceship() {
     super(width/2, height/2, 0, 0);
     dir=new PVector(0.1, 0);
@@ -15,26 +16,31 @@ class Spaceship extends GameObject{
     popMatrix();
   }
   void drawShip() {
-    fill(0);
     stroke(255);
     strokeWeight(2);
     //Colors sponsored by Calvin
     stroke(16,67,141);
     fill(21, 41, 67);
+    if(invincibilityTimer>0){
+      fill(219, 214, 51);
+    }
     triangle(-10, -10, -10, 10, 30, 0);
     circle(15, 0, 5);
   }
   void act() {
     move();
     shoot();
-    checkForCollisions();
+    if(invincibilityTimer<=0){
+      checkForCollisions();
+    }
+    invincibilityTimer--;
   }
   void move() {
     loc.add(vel);
     //println(dir+" "+vel+" "+loc);
    
     if (upkey){
-      vel.add(dir.x*2, dir.y*2);
+      vel.add(dir.x, dir.y);
       
     }
     if (leftkey){
@@ -60,6 +66,7 @@ class Spaceship extends GameObject{
         if(dist(loc.x, loc.y, obj.loc.x, obj.loc.y)<5+obj.d/2){
           lives-=obj.lives;
           obj.lives=0;
+          invincibilityTimer=120;
         }
       }
       i++;

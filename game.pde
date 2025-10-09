@@ -30,14 +30,14 @@ void game() {
         x=1500;
       }
       y=random(0, 1000);
-    }
+    }  
     else{
       if(random(0,2)<1){
         y=1000;
       }
       x=random(0,1500);
     }
-    objects.add(new Asteroid(x, y, 3));
+    objects.add(new Asteroid(x, y, 3, random(0.5,1.5)*3*50*2));
     asteroidTimer=0;
     asteroidDelay/=1.05;
     asteroidDelay=max(asteroidDelay, 60);

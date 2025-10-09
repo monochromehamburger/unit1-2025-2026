@@ -27,7 +27,7 @@ class UFO extends GameObject {
     alienShootTimer--;
     if(alienShootTimer<=0){
       shoot();
-      alienShootTimer=60;
+      alienShootTimer=100-lives*3;
     }
     
   }
