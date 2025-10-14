@@ -8,6 +8,7 @@ class Asteroid extends GameObject {
     lives=3;
     d=random(0.5,1.5)*lives*50;
     randomRotation=random(0.5, 1.5);
+    rotation=0;
   }
   Asteroid(float a, float b, int c, float size){
     super(a, b, 1, 1);
@@ -16,6 +17,7 @@ class Asteroid extends GameObject {
     lives=c;
     d=size/2;
     randomRotation=random(0.5, 1.5);
+    rotation=0;
   }
   void show(){
     pushMatrix();
@@ -44,6 +46,7 @@ class Asteroid extends GameObject {
             objects.add(new Asteroid(loc.x, loc.y, lives-1, d));
             objects.add(new Asteroid(loc.x, loc.y, lives-1, d));
           }
+          asteroidsDestroyed++;
           lives=0;
         }
       }

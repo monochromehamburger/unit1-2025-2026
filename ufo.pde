@@ -14,11 +14,19 @@ class UFO extends GameObject {
     lives=c;
     d=lives*50;
   }
+  
   void show(){
-    fill(100, 200, 100);
     stroke(255);
+    fill(100, 200, 100, 75);
     circle(loc.x, loc.y, d);
-    line(loc.x, loc.y, loc.x+lives*50/2, loc.y);
+    fill(100, 200, 100);
+    ellipse(loc.x, loc.y+d/2.5, d*1.5, d*3/10);
+    fill(124, 176, 143);
+    circle(loc.x, loc.y, d/2);
+    fill(200);
+    circle(loc.x-d/5, loc.y, d/6);
+    circle(loc.x+d/5, loc.y, d/6);
+    //line(loc.x, loc.y, loc.x+lives*50/2, loc.y);
   }
   void act(){
     loc.add(vel);
@@ -27,7 +35,7 @@ class UFO extends GameObject {
     alienShootTimer--;
     if(alienShootTimer<=0){
       shoot();
-      alienShootTimer=100-lives*3;
+      alienShootTimer=100-lives*20;
     }
     
   }
@@ -38,10 +46,12 @@ class UFO extends GameObject {
       if(obj instanceof Bullet && obj.isEnemy==false){
         if(dist(loc.x, loc.y, obj.loc.x, obj.loc.y)<d/2+obj.d/2 && lives>0){
           obj.lives=0;
+          asteroidsDestroyed++;
           if(lives!=1){
             objects.add(new UFO(loc.x, loc.y, lives-1));
           }
           lives=0;
+          
         }
       }
       i++;
