@@ -18,7 +18,7 @@ void setup() {
   rectMode(CENTER);
   textAlign(CENTER);
   asteroidDelay=300;
-  start();
+  commence();
 }
 void draw() {
   if (mode==GAME) {
@@ -35,7 +35,7 @@ void draw() {
     text("Press T to Start", width/2, height/2+100);
   }
 }
-void start(){
+void commence(){
   player1=new Spaceship();
   objects = new ArrayList();
   objects.add(player1);

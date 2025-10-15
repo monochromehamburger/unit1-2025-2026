@@ -1,6 +1,10 @@
 class Asteroid extends GameObject {
   float rotation;
   float randomRotation;
+  float[] asteroidCircleX;
+  float[] asteroidCircleY;
+  float[] asteroidCircleSize;
+  float[] colors;
   Asteroid(){
     super(random(width), random(height), 1, 1);
     vel.setMag(random(1, 3));
@@ -9,6 +13,21 @@ class Asteroid extends GameObject {
     d=random(0.5,1.5)*lives*50;
     randomRotation=random(0.5, 1.5);
     rotation=0;
+    asteroidCircleX=new float[5];
+    asteroidCircleY=new float[5];
+    asteroidCircleSize=new float[5];
+    colors=new float[5];
+    int numCraters=(int)random(4, 7);
+    for(int i=0;i<numCraters;i++){
+      fill(map(lives,1,3,0,50));
+      asteroidCircleX[i]=random(-d/3,d/3);
+      asteroidCircleY[i]=random(-d/3,d/3);
+      asteroidCircleSize[i]=random(d/8,d/2);
+      colors[i]=map(lives,1,3,0,50)*random(0.5,1.5);
+      while(max(abs(asteroidCircleX[i]), abs(asteroidCircleY[i]))+asteroidCircleSize[i]<d/2.2){
+        asteroidCircleSize[i]=random(d/8,d/2);
+      }
+    }
   }
   Asteroid(float a, float b, int c, float size){
     super(a, b, 1, 1);
@@ -18,16 +37,34 @@ class Asteroid extends GameObject {
     d=size/2;
     randomRotation=random(0.5, 1.5);
     rotation=0;
+    asteroidCircleX=new float[5];
+    asteroidCircleY=new float[5];
+    asteroidCircleSize=new float[5];
+    colors=new float[5];
+    for(int i=0;i<5;i++){
+      fill(map(lives,1,3,0,50));
+      asteroidCircleX[i]=random(-d/3,d/3);
+      asteroidCircleY[i]=random(-d/3,d/3);
+      asteroidCircleSize[i]=random(d/8,d/2);
+      colors[i]=map(lives,1,3,0,50)*random(0.5,1.5);
+      while(max(abs(asteroidCircleX[i]), abs(asteroidCircleY[i]))+asteroidCircleSize[i]<d/2.2){
+        asteroidCircleSize[i]=random(d/8,d/2);
+      }
+    }
   }
   void show(){
     pushMatrix();
     translate(loc.x, loc.y);
+    noStroke();
     rotate(radians(rotation));
     rotation+=randomRotation;
-    stroke(255);
-    fill(map(lives, 1, 3, 0, 100));
+    fill(map(lives, 1, 3, 50, 150));
     circle(0, 0, d);
-    line(0, 0, d/2, 0);
+    noStroke();
+    for(int i=0;i<5;i++){
+      fill(colors[i]);
+      circle(asteroidCircleX[i], asteroidCircleY[i], asteroidCircleSize[i]);
+    }
     popMatrix();
   }
   void act(){

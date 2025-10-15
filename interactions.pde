@@ -21,6 +21,6 @@ void keyReleased() {
   if (key=='d') rightkey=false;
   if(key=='t'){
     mode=GAME;
-    start();
+    commence();
   }
 }

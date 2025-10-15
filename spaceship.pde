@@ -22,6 +22,8 @@ class Spaceship extends GameObject{
     stroke(16,67,141);
     fill(21, 41, 67);
     if(invincibilityTimer>0){
+      fill(219, 214, 51, map(invincibilityTimer, 0, 120, 0, 255));
+      circle(10, 0, map(invincibilityTimer, 0, 120, 30, 100));
       fill(219, 214, 51);
     }
     triangle(-10, -10, -10, 10, 30, 0);
