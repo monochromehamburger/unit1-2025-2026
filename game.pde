@@ -16,10 +16,9 @@ void game() {
     mode=GAMEOVER;
   }
   fill(255, 0, 0);
-  textSize(50);
+  textSize(40);
   text("Lives: "+player1.lives, 100, 120);
-  text("Time: "+timeSurvived/60, 100, 170);
-  text("Asteroids: "+asteroidsDestroyed, 140, 220);
+  text("Asteroids: "+asteroidsDestroyed, 160, 170);
   timeSurvived++;
   asteroidTimer++;
   if(asteroidTimer>=asteroidDelay){
@@ -62,5 +61,8 @@ void game() {
     }
     objects.add(new UFO(x, y, 3));
     UFOTimer=0;
+  }
+  if(asteroidsDestroyed>=100){
+    mode=WIN;
   }
 }

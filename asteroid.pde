@@ -85,6 +85,9 @@ class Asteroid extends GameObject {
           }
           asteroidsDestroyed++;
           lives=0;
+          for(int j=0;j<25;j++){
+            objects.add(new Particle(loc.x, loc.y, 60, #A9A9A9));
+          }
         }
       }
       i++;
