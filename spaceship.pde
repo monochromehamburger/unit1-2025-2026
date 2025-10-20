@@ -2,6 +2,7 @@ class Spaceship extends GameObject{
   PVector dir;
   int cooldown;
   int invincibilityTimer=0;
+  int teleportTimer;
   Spaceship() {
     super(width/2, height/2, 0, 0);
     dir=new PVector(0.1, 0);
@@ -23,7 +24,7 @@ class Spaceship extends GameObject{
     fill(21, 41, 67);
     if(invincibilityTimer>0){
       fill(219, 214, 51, map(invincibilityTimer, 0, 120, 0, 255));
-      circle(10, 0, map(invincibilityTimer, 0, 120, 30, 100));
+      circle(10, 0, map(invincibilityTimer, 0, 120, 0, 100));
       fill(219, 214, 51);
     }
     triangle(-10, -10, -10, 10, 30, 0);
@@ -36,6 +37,7 @@ class Spaceship extends GameObject{
       checkForCollisions();
     }
     invincibilityTimer--;
+    teleportTimer--;
   }
   void move() {
     loc.add(vel);
@@ -73,5 +75,33 @@ class Spaceship extends GameObject{
       }
       i++;
     }
+  }
+  void teleport(){
+    int i=0;
+    PVector old=new PVector(loc.x, loc.y);
+    for(int j=0;j<2000;j++){
+      loc.add(dir.x, dir.y);  
+    }
+    boolean found=true;
+    while(found==true){
+      found=false;
+      while(i<objects.size()){
+        GameObject obj = objects.get(i);
+        if(obj instanceof Asteroid || obj.isEnemy==true){
+          if(dist(loc.x, loc.y, obj.loc.x, obj.loc.y)<10+obj.d/2){
+            for(int j=0;j<100;j++){
+              loc.add(dir.x, dir.y);
+            }
+            found=true;
+            break;
+          }
+        }
+        i++;
+      }
+    }
+    stroke(222, 255, 39);
+    strokeWeight(20);
+    line(old.x, old.y, loc.x, loc.y);
+    teleportTimer=600;
   }
 }

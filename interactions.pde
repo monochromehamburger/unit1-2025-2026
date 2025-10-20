@@ -8,6 +8,9 @@ void keyPressed() {
   if (key=='s') downkey=true;
   if (key=='a') leftkey=true;
   if (key=='d') rightkey=true;
+  if (key=='e'){
+    if(player1.teleportTimer<0) player1.teleport();
+  }
 }
 void keyReleased() {
   if (keyCode==UP) upkey=false;

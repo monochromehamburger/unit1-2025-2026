@@ -6,6 +6,7 @@ class UFO extends GameObject {
     vel.rotate(random(TWO_PI));
     lives=3;
     d=lives*50;
+    isEnemy=true;
   }
   UFO(float a, float b, int c){
     super(a, b, 1, 1);
@@ -13,6 +14,7 @@ class UFO extends GameObject {
     vel.rotate(random(TWO_PI));
     lives=c;
     d=lives*50;
+    isEnemy=true;
   }
   
   void show(){

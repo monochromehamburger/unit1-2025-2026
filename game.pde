@@ -19,6 +19,7 @@ void game() {
   textSize(40);
   text("Lives: "+player1.lives, 100, 120);
   text("Asteroids: "+asteroidsDestroyed, 160, 170);
+  text("Teleport Ready in: "+max(0,player1.teleportTimer/120+1), 260, 220);
   timeSurvived++;
   asteroidTimer++;
   if(asteroidTimer>=asteroidDelay){
