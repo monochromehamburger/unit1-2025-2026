@@ -71,7 +71,6 @@ class Button{
         index=0;
       }
     }
-    if(mouseReleased==true) println(mouseReleased);
     if(mouseReleased && mouseX>x-w/2 && mouseX<x+w/2 && mouseY>y-h/2 && mouseY<y+h/2){
       clicked=true;
     }

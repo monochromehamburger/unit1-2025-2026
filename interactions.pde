@@ -22,8 +22,5 @@ void keyReleased() {
   if (key=='s') downkey=false;
   if (key=='a') leftkey=false;
   if (key=='d') rightkey=false;
-  if(key=='t'){
-    mode=GAME;
-    commence();
-  }
+  if (key=='p') mode=PAUSE;
 }

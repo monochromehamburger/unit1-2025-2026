@@ -8,9 +8,16 @@ class Particle extends GameObject{
     lives=1;
     d=5;
   }
+  Particle(PVector loc, int time, color col, PVector v){
+    super(loc, v, 10);
+    timer=time;
+    particleColor=col;
+    lives=1;
+    d=5;
+  }
   void show(){
     noStroke();
-    fill(particleColor);
+    fill(particleColor, map(timer, 0, 60, 0, 255));
     circle(loc.x, loc.y, d);
   }
   void act(){
@@ -19,7 +26,6 @@ class Particle extends GameObject{
     if(timer<=0){
       lives=0;
     }
-    println(timer);
   }
   void move(){
     loc.x+=vel.x;

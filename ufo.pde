@@ -54,6 +54,9 @@ class UFO extends GameObject {
           }
           lives=0;
           
+          for(int j=0;j<30;j++){
+            objects.add(new Particle(loc.x, loc.y, 60, #34FA2B));
+          }
         }
       }
       i++;

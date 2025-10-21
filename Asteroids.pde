@@ -3,6 +3,8 @@ final int GAME=1;
 final int PAUSE=2;
 final int GAMEOVER=3;
 final int WIN=4;
+boolean mouseReleased;
+boolean wasPressed;
 int mode;
 boolean upkey, downkey, leftkey, rightkey, spacekey;
 Spaceship player1;
@@ -13,6 +15,7 @@ int timeSurvived;
 int UFOTimer;
 int asteroidsDestroyed;
 PFont font;
+Button begin;
 void setup() {
   mode=INTRO;
   size(1500, 1000, P2D);
@@ -23,6 +26,7 @@ void setup() {
   commence();
   font=createFont("Gameplay.ttf", 128);
   textFont(font);
+  begin= new Button("PLAY", width/2, height/2+100, 300, 100, #AB9419, #991233);
 }
 void draw() {
   if (mode==GAME) {
@@ -34,12 +38,23 @@ void draw() {
   else if(mode==WIN){
     winscreen();
   }
+  else if(mode==PAUSE){
+    pause();
+  }
   else{
     background(0);
     textSize(100);
     fill(255);
-    text("NOT ASTEROIDS", width/2, height/2);
-    text("Press T to Start", width/2, height/2+100);  
+    begin.show();
+    text("NOT ASTEROIDS", width/2, height/2-300);
+    text("P to Pause", width/2, height/2-200);
+    text("WASD or Arrow Keys to move", width/2, height/2-100);
+    text("Space to shoot", width/2, height/2);
+    if(begin.clicked){
+      mode=GAME;
+      commence();
+    }
+    click();
   }
 }
 void commence(){

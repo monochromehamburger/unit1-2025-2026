@@ -29,6 +29,7 @@ class Spaceship extends GameObject{
     }
     triangle(-10, -10, -10, 10, 30, 0);
     circle(15, 0, 5);
+    objects.add(new Particle(new PVector(loc.x, loc.y), 30, #FF2739, new PVector(vel.x*-1, vel.y*-1)));
   }
   void act() {
     move();
