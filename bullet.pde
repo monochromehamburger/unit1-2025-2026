@@ -13,6 +13,12 @@ class Bullet extends GameObject{
     d=10;
   }
 
+  Bullet(float x, float y, PVector target, int size) {
+    super(new PVector(x, y), new PVector(target.x - x, target.y-y), 1);
+    vel.setMag(10);
+    timer=120;
+    d=size;
+  }
   void show() {
     fill(255);
     if(isEnemy==true){

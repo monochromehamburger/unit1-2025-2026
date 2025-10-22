@@ -1,7 +1,5 @@
 void game() {
   background(0);
-  player1.show();
-  player1.act();
   int i=0;
   while (i<objects.size()) {
     GameObject currentObject=objects.get(i);
@@ -60,10 +58,23 @@ void game() {
       }
       x=random(0,1500);
     }
-    objects.add(new UFO(x, y, 3));
+    int bulletSize;
+    if(random(0,4)<1){
+      bulletSize=30;
+    }
+    else{
+      bulletSize=10;
+    }
+    boolean splitsIntoTwo=false;
+    if(random(0, 4)<1){
+      splitsIntoTwo=true;
+    }
+    objects.add(new UFO(x, y, 3, bulletSize, splitsIntoTwo));
     UFOTimer=0;
   }
   if(asteroidsDestroyed>=100){
     mode=WIN;
   }
+  player1.show();
+  player1.act();
 }

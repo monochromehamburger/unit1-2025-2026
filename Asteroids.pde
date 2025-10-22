@@ -16,6 +16,9 @@ int UFOTimer;
 int asteroidsDestroyed;
 PFont font;
 Button begin;
+PImage[] jif;
+int jifLength;
+int jifIndex=0;
 void setup() {
   mode=INTRO;
   size(1500, 1000, P2D);
@@ -26,6 +29,11 @@ void setup() {
   commence();
   font=createFont("Gameplay.ttf", 128);
   textFont(font);
+  jifLength=80;
+  jif=new PImage[jifLength+1];
+  for(int i=0;i<jifLength;i++){
+    jif[i]=loadImage("frame_"+i+"_delay-0.04s.gif");
+  }  
   begin= new Button("PLAY", width/2, height/2+100, 300, 100, #AB9419, #991233);
 }
 void draw() {
@@ -45,6 +53,9 @@ void draw() {
     background(0);
     textSize(100);
     fill(255);
+    image(jif[jifIndex], 0, 0, width, height);
+    jifIndex++;
+    jifIndex%=jifLength;
     begin.show();
     text("NOT ASTEROIDS", width/2, height/2-300);
     text("P to Pause", width/2, height/2-200);

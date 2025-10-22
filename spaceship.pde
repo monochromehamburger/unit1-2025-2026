@@ -7,7 +7,7 @@ class Spaceship extends GameObject{
     super(width/2, height/2, 0, 0);
     dir=new PVector(0.1, 0);
     cooldown=0;
-    lives=5;
+    lives=500;
   }
   void show() {
     pushMatrix();
@@ -29,7 +29,7 @@ class Spaceship extends GameObject{
     }
     triangle(-10, -10, -10, 10, 30, 0);
     circle(15, 0, 5);
-    objects.add(new Particle(new PVector(loc.x, loc.y), 30, #FF2739, new PVector(vel.x*-1, vel.y*-1)));
+    objects.add(new Particle(new PVector(loc.x, loc.y), 30, #2E40A2, new PVector(vel.x*-1, vel.y*-1)));
   }
   void act() {
     move();
@@ -80,25 +80,27 @@ class Spaceship extends GameObject{
   void teleport(){
     int i=0;
     PVector old=new PVector(loc.x, loc.y);
-    for(int j=0;j<2000;j++){
-      loc.add(dir.x, dir.y);  
-    }
+    float x=random(-300,300);
+    float y=random(-300,300);
+    loc.add(x, y);
     boolean found=true;
-    while(found==true){
+    int loopedTimes=0;
+    while(found==true && loopedTimes<100){
       found=false;
       while(i<objects.size()){
         GameObject obj = objects.get(i);
         if(obj instanceof Asteroid || obj.isEnemy==true){
           if(dist(loc.x, loc.y, obj.loc.x, obj.loc.y)<10+obj.d/2){
-            for(int j=0;j<100;j++){
-              loc.add(dir.x, dir.y);
-            }
+            x=random(-300,300);
+            y=random(-300,300);
+            loc.add(x, y);
             found=true;
             break;
           }
         }
         i++;
       }
+      loopedTimes++;
     }
     stroke(222, 255, 39);
     strokeWeight(20);
