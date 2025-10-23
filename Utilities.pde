@@ -5,5 +5,4 @@ void click(){
     mouseReleased=true;
     wasPressed=false;
   }
-  //println("you suck "+ mouseReleased+" "+wasPressed+" "+mousePressed);
 }

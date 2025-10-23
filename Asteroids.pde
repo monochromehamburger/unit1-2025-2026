@@ -74,7 +74,7 @@ void commence(){
   objects.add(player1);
   timeSurvived=0;
   asteroidTimer=0;
-  asteroidDelay=300;
+  asteroidDelay=200;
   UFOTimer=0;
   asteroidsDestroyed=0;
   player1.teleportTimer=-130;

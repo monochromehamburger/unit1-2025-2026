@@ -3,6 +3,8 @@ class UFO extends GameObject {
   int maxShootTimer;
   int bulletSize;
   boolean splitsIntoTwo;
+  boolean machineGun;
+  int timer;
   UFO() {
     super(random(width), random(height), 1, 1);
     vel.setMag(random(1, 3));
@@ -12,7 +14,7 @@ class UFO extends GameObject {
     isEnemy=true;
     maxShootTimer=100-lives*20;
   }
-  UFO(float a, float b, int c, int bSize, boolean splits) {
+  UFO(float a, float b, int c, int bSize, boolean splits, boolean fastShoot) {
     super(a, b, 1, 1);
     if (bSize==10) {
       vel.setMag(random(1, 3));
@@ -26,9 +28,15 @@ class UFO extends GameObject {
     maxShootTimer=100-lives*20;
     bulletSize=bSize;
     splitsIntoTwo=splits;
+    machineGun=fastShoot;
+    if(fastShoot){
+      maxShootTimer/=3;
+    }
+    timer=120;
   }
 
   void show() {
+    timer--;
     stroke(255);
     if (splitsIntoTwo==false) {
       fill(100, 200, 100, 75);
@@ -49,8 +57,17 @@ class UFO extends GameObject {
       circle(loc.x, loc.y, d/2);
     }
     fill(200);
+    if(machineGun){
+      noStroke();
+      fill(0);
+    }
     circle(loc.x-d/5, loc.y, d/6);
     circle(loc.x+d/5, loc.y, d/6);
+    if(machineGun){
+      fill(100, 100, 100);
+      rect(loc.x-d/5, loc.y+d/2.5, d/5, d/3);
+      rect(loc.x+d/5, loc.y+d/2.5, d/5, d/3);
+    }
     //line(loc.x, loc.y, loc.x+lives*50/2, loc.y);
   }
   void act() {
@@ -73,9 +90,9 @@ class UFO extends GameObject {
           asteroidsDestroyed++;
           if (lives!=1) {
             if (splitsIntoTwo) {
-              objects.add(new UFO(loc.x, loc.y, lives-1, bulletSize, splitsIntoTwo));
+              objects.add(new UFO(loc.x, loc.y, lives-1, bulletSize, splitsIntoTwo, machineGun));
             }
-            objects.add(new UFO(loc.x, loc.y, lives-1, bulletSize, splitsIntoTwo));
+            objects.add(new UFO(loc.x, loc.y, lives-1, bulletSize, splitsIntoTwo, machineGun));
           }
           lives=0;
 
@@ -91,5 +108,12 @@ class UFO extends GameObject {
     Bullet temp=new Bullet(loc.x, loc.y, player1.loc, bulletSize);
     temp.isEnemy=true;
     objects.add(temp);
+  }
+  void wrapAround(){
+    if(timer<0 && (loc.x<0 || loc.y<0 || loc.x>width && loc.y>height)){
+      lives=0;
+    }
+    loc.x=(loc.x+width)%width;
+    loc.y=(loc.y+height)%height;
   }
 }

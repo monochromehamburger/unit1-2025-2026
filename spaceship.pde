@@ -7,7 +7,7 @@ class Spaceship extends GameObject{
     super(width/2, height/2, 0, 0);
     dir=new PVector(0.1, 0);
     cooldown=0;
-    lives=500;
+    lives=5;
   }
   void show() {
     pushMatrix();

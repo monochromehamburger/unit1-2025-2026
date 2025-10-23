@@ -38,7 +38,7 @@ void game() {
     }
     objects.add(new Asteroid(x, y, 3, random(0.5,1.5)*3*50*2));
     asteroidTimer=0;
-    asteroidDelay/=1.05;
+    asteroidDelay/=1.02;
     asteroidDelay=max(asteroidDelay, 60);
   }
   UFOTimer++;
@@ -69,7 +69,11 @@ void game() {
     if(random(0, 4)<1){
       splitsIntoTwo=true;
     }
-    objects.add(new UFO(x, y, 3, bulletSize, splitsIntoTwo));
+    boolean machineGun=false;
+    if(random(0, 4)<1){
+      machineGun=true;
+    }
+    objects.add(new UFO(x, y, 3, bulletSize, splitsIntoTwo, machineGun));
     UFOTimer=0;
   }
   if(asteroidsDestroyed>=100){
