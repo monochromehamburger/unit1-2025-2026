@@ -23,4 +23,7 @@ void keyReleased() {
   if (key=='a') leftkey=false;
   if (key=='d') rightkey=false;
   if (key=='p') mode=PAUSE;
+  if (key=='1') player1.weaponNumber=1;
+  if (key=='2') player1.weaponNumber=2;
+  if (key=='3') player1.weaponNumber=3;
 }

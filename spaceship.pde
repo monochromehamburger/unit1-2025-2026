@@ -3,11 +3,13 @@ class Spaceship extends GameObject{
   int cooldown;
   int invincibilityTimer=0;
   int teleportTimer;
+  int weaponNumber;
   Spaceship() {
     super(width/2, height/2, 0, 0);
     dir=new PVector(0.1, 0);
     cooldown=0;
     lives=5;
+    weaponNumber=1;
   }
   void show() {
     pushMatrix();
@@ -21,12 +23,13 @@ class Spaceship extends GameObject{
     strokeWeight(2);
     //Colors sponsored by Calvin
     stroke(16,67,141);
-    fill(21, 41, 67);
     if(invincibilityTimer>0){
       fill(219, 214, 51, map(invincibilityTimer, 0, 120, 0, 255));
       circle(10, 0, map(invincibilityTimer, 0, 120, 0, 100));
-      fill(219, 214, 51);
     }
+    if(weaponNumber==1)fill(21, 41, 67);
+    else if(weaponNumber==2)fill(12, 87, 212);
+    else if(weaponNumber==3)fill(111, 87, 10);
     triangle(-10, -10, -10, 10, 30, 0);
     circle(15, 0, 5);
     objects.add(new Particle(new PVector(loc.x, loc.y), 30, #2E40A2, new PVector(vel.x*-1, vel.y*-1)));
@@ -52,16 +55,41 @@ class Spaceship extends GameObject{
       dir.rotate(-radians(3));
     }
     if (rightkey) dir.rotate(radians(3));
-    vel.setMag(vel.mag()*0.99);
+    if(weaponNumber==2){
+      vel.setMag(vel.mag()*0.95);
+    }
+    else if(weaponNumber==3){
+      vel.setMag(0);
+    }
+    else{
+      vel.setMag(vel.mag()*0.99);
+    }
     wrapAround();
   }
   void shoot() {
     cooldown--;
-    if (spacekey && cooldown <=0) {
-      objects.add(new Bullet());
-      cooldown=20;
+    if(weaponNumber==1){
+      if (spacekey && cooldown <=0) {
+        objects.add(new Bullet(10));
+        cooldown=20;
+      }
     }
-    
+    else if(weaponNumber==2){
+      if (spacekey && cooldown <=0) {
+        objects.add(new Bullet(5));
+        cooldown=10;
+      }
+    }
+    else if(weaponNumber==3){
+      if (spacekey && cooldown <=0) {
+        objects.add(new Bullet(10));
+        objects.add(new Bullet(10, dir.copy().rotate(-1)));
+        objects.add(new Bullet(10, dir.copy().rotate(1)));
+        objects.add(new Bullet(10, dir.copy().rotate(-0.5)));
+        objects.add(new Bullet(10, dir.copy().rotate(0.5)));
+        cooldown=20;
+      }
+    }
   }
   void checkForCollisions() {
     int i=0;

@@ -1,8 +1,14 @@
 class Bullet extends GameObject{
   int timer;
-  Bullet() {
+  Bullet(int speed) {
     super(player1.loc.copy(), player1.dir.copy(), 1);
-    vel.setMag(10);
+    vel.setMag(speed);
+    timer=120;
+    d=10;
+  }
+  Bullet(int speed, PVector direction) {
+    super(player1.loc.copy(), direction, 1);
+    vel.setMag(speed);
     timer=120;
     d=10;
   }

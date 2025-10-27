@@ -69,6 +69,9 @@ class Asteroid extends GameObject {
   }
   void act(){
     loc.add(vel);
+    if(hardMode==true){
+      loc.add(vel);
+    }
     wrapAround();
     checkForCollisions();
   }

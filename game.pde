@@ -58,25 +58,27 @@ void game() {
       }
       x=random(0,1500);
     }
+    int variantChance=4;
+    if(hardMode)variantChance=3;
     int bulletSize;
-    if(random(0,4)<1){
+    if(random(0,variantChance)<1){
       bulletSize=30;
     }
     else{
       bulletSize=10;
     }
     boolean splitsIntoTwo=false;
-    if(random(0, 4)<1){
+    if(random(0, variantChance)<1){
       splitsIntoTwo=true;
     }
     boolean machineGun=false;
-    if(random(0, 4)<1){
+    if(random(0, variantChance)<1){
       machineGun=true;
     }
     objects.add(new UFO(x, y, 3, bulletSize, splitsIntoTwo, machineGun));
     UFOTimer=0;
   }
-  if(asteroidsDestroyed>=100){
+  if(((!hardMode) && asteroidsDestroyed>=100) || asteroidsDestroyed>=150){
     mode=WIN;
   }
   player1.show();
