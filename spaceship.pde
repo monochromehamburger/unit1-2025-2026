@@ -30,6 +30,7 @@ class Spaceship extends GameObject{
     if(weaponNumber==1)fill(21, 41, 67);
     else if(weaponNumber==2)fill(12, 87, 212);
     else if(weaponNumber==3)fill(111, 87, 10);
+    else if(weaponNumber==4)fill(31, 82, 10);
     triangle(-10, -10, -10, 10, 30, 0);
     circle(15, 0, 5);
     objects.add(new Particle(new PVector(loc.x, loc.y), 30, #2E40A2, new PVector(vel.x*-1, vel.y*-1)));
@@ -88,6 +89,12 @@ class Spaceship extends GameObject{
         objects.add(new Bullet(10, dir.copy().rotate(-0.5)));
         objects.add(new Bullet(10, dir.copy().rotate(0.5)));
         cooldown=20;
+      }
+    }
+    else if(weaponNumber==4){
+      if (spacekey && cooldown <=0) {
+        objects.add(new Bullet(15, 600, 15));
+        cooldown=50;
       }
     }
   }

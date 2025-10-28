@@ -1,22 +1,38 @@
 class Bullet extends GameObject{
   int timer;
+  color col;
+  color outline;
   Bullet(int speed) {
     super(player1.loc.copy(), player1.dir.copy(), 1);
     vel.setMag(speed);
     timer=120;
     d=10;
+    col=#133B64;
+    outline=#FFFFFF;
+  }
+  Bullet(int speed, int time, float size) {
+    super(player1.loc.copy(), player1.dir.copy(), 1);
+    vel.setMag(speed);
+    timer=time;
+    d=size;
+    col=#520A52;
+    outline=#52F01F;
   }
   Bullet(int speed, PVector direction) {
     super(player1.loc.copy(), direction, 1);
     vel.setMag(speed);
     timer=120;
     d=10;
+    col=#133B64;
+    outline=#FFFFFF;
   }
   Bullet(float x, float y, PVector target) {
     super(new PVector(x, y), new PVector(target.x - x, target.y-y), 1);
     vel.setMag(10);
     timer=120;
     d=10;
+    col=#133B64;
+    outline=#FFFFFF;
   }
 
   Bullet(float x, float y, PVector target, int size) {
@@ -24,17 +40,18 @@ class Bullet extends GameObject{
     vel.setMag(10);
     timer=120;
     d=size;
+    col=#133B64;
+    outline=#FFFFFF;
   }
   void show() {
-    fill(255);
     if(isEnemy==true){
       stroke(255, 0, 0);
     }
     else{
-      stroke(255);
+      stroke(outline);
     }
     strokeWeight(2);
-    fill(19, 59, 100);
+    fill(col);
     circle(loc.x, loc.y, d);
     wrapAround();
   }

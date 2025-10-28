@@ -13,6 +13,7 @@ void game() {
   if(player1.lives<=0){
     mode=GAMEOVER;
   }
+  
   fill(255, 0, 0);
   textSize(40);
   text("Lives: "+player1.lives, 100, 120);
