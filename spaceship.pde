@@ -4,6 +4,7 @@ class Spaceship extends GameObject{
   int invincibilityTimer=0;
   int teleportTimer;
   int weaponNumber;
+  int tpMaxCooldown=600;
   Spaceship() {
     super(width/2, height/2, 0, 0);
     dir=new PVector(0.1, 0);
@@ -31,6 +32,7 @@ class Spaceship extends GameObject{
     else if(weaponNumber==2)fill(12, 87, 212);
     else if(weaponNumber==3)fill(111, 87, 10);
     else if(weaponNumber==4)fill(31, 82, 10);
+    else if(weaponNumber==5)fill(112, 197, 31);
     triangle(-10, -10, -10, 10, 30, 0);
     circle(15, 0, 5);
     objects.add(new Particle(new PVector(loc.x, loc.y), 30, #2E40A2, new PVector(vel.x*-1, vel.y*-1)));
@@ -62,8 +64,11 @@ class Spaceship extends GameObject{
     else if(weaponNumber==3){
       vel.setMag(0);
     }
-    else{
+    else if(weaponNumber==4){
       vel.setMag(vel.mag()*0.99);
+    }
+    else{
+      vel.setMag(0);
     }
     wrapAround();
   }
@@ -74,12 +79,14 @@ class Spaceship extends GameObject{
         objects.add(new Bullet(10));
         cooldown=20;
       }
+      tpMaxCooldown=600;
     }
     else if(weaponNumber==2){
       if (spacekey && cooldown <=0) {
         objects.add(new Bullet(5));
         cooldown=10;
       }
+      tpMaxCooldown=600;
     }
     else if(weaponNumber==3){
       if (spacekey && cooldown <=0) {
@@ -90,12 +97,21 @@ class Spaceship extends GameObject{
         objects.add(new Bullet(10, dir.copy().rotate(0.5)));
         cooldown=20;
       }
+      tpMaxCooldown=600;
     }
     else if(weaponNumber==4){
       if (spacekey && cooldown <=0) {
         objects.add(new Bullet(15, 600, 15));
         cooldown=50;
       }
+      tpMaxCooldown=600;
+    }
+    else if(weaponNumber==5){
+      if (spacekey && cooldown <=0) {
+        objects.add(new Bullet(2, 600, 100, true));
+        cooldown=50;
+      }
+      tpMaxCooldown=120;
     }
   }
   void checkForCollisions() {
@@ -140,6 +156,6 @@ class Spaceship extends GameObject{
     stroke(222, 255, 39);
     strokeWeight(20);
     line(old.x, old.y, loc.x, loc.y);
-    teleportTimer=600;
+    teleportTimer=tpMaxCooldown;
   }
 }

@@ -61,6 +61,7 @@ void draw() {
     jifIndex%=jifLength;
     begin.show();
     difficulty.show();
+    fill(#AB9419);
     text("NOT ASTEROIDS", width/2, height/2-400);
     text("P to Pause", width/2, height/2-300);
     text("WASD or Arrow Keys to move", width/2, height/2-200);

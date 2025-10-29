@@ -81,7 +81,7 @@ class Asteroid extends GameObject {
       GameObject obj = objects.get(i);
       if(obj instanceof Bullet && obj.isEnemy==false){
         if(dist(loc.x, loc.y, obj.loc.x, obj.loc.y)<d/2+obj.d/2 && lives>0){
-          obj.lives=0;
+          obj.lives--;
           if(lives!=1){
             objects.add(new Asteroid(loc.x, loc.y, lives-1, d));
             objects.add(new Asteroid(loc.x, loc.y, lives-1, d));

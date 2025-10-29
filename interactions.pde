@@ -27,4 +27,5 @@ void keyReleased() {
   if (key=='2') player1.weaponNumber=2;
   if (key=='3') player1.weaponNumber=3;
   if (key=='4') player1.weaponNumber=4;
+  if (key=='5') player1.weaponNumber=5;
 }

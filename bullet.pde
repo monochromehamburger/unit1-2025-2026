@@ -2,6 +2,7 @@ class Bullet extends GameObject{
   int timer;
   color col;
   color outline;
+  boolean doesntWrap;
   Bullet(int speed) {
     super(player1.loc.copy(), player1.dir.copy(), 1);
     vel.setMag(speed);
@@ -17,6 +18,15 @@ class Bullet extends GameObject{
     d=size;
     col=#520A52;
     outline=#52F01F;
+  }
+  Bullet(int speed, int time, float size, boolean wrapAround) {
+    super(player1.loc.copy(), player1.dir.copy(), 3);
+    vel.setMag(speed);
+    timer=time;
+    d=size;
+    col=#520A52;
+    outline=#52F01F;
+    doesntWrap=wrapAround;
   }
   Bullet(int speed, PVector direction) {
     super(player1.loc.copy(), direction, 1);
@@ -56,6 +66,13 @@ class Bullet extends GameObject{
     wrapAround();
   }
 
+  void wrapAround(){
+    if(doesntWrap==true && (loc.x<0 || loc.y<0 || loc.x>width && loc.y>height)){
+      lives=0;
+    }
+    loc.x=(loc.x+width)%width;
+    loc.y=(loc.y+height)%height;
+  }
   void act() {
     loc.add(vel);
     timer--;
