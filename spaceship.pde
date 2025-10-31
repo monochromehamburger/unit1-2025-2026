@@ -58,6 +58,10 @@ class Spaceship extends GameObject{
       dir.rotate(-radians(3));
     }
     if (rightkey) dir.rotate(radians(3));
+    println(weaponNumber);
+    if(weaponNumber==1){
+      vel.setMag(vel.mag()*0.99);
+    }
     if(weaponNumber==2){
       vel.setMag(vel.mag()*0.95);
     }
@@ -67,7 +71,7 @@ class Spaceship extends GameObject{
     else if(weaponNumber==4){
       vel.setMag(vel.mag()*0.99);
     }
-    else{
+    else if(weaponNumber==5){
       vel.setMag(0);
     }
     wrapAround();
@@ -83,7 +87,7 @@ class Spaceship extends GameObject{
     }
     else if(weaponNumber==2){
       if (spacekey && cooldown <=0) {
-        objects.add(new Bullet(5));
+        objects.add(new Bullet(5, 120, 10));
         cooldown=10;
       }
       tpMaxCooldown=600;
@@ -93,6 +97,10 @@ class Spaceship extends GameObject{
         objects.add(new Bullet(10));
         objects.add(new Bullet(10, dir.copy().rotate(-1)));
         objects.add(new Bullet(10, dir.copy().rotate(1)));
+        objects.add(new Bullet(10, dir.copy().rotate(-0.25)));
+        objects.add(new Bullet(10, dir.copy().rotate(0.25)));
+        objects.add(new Bullet(10, dir.copy().rotate(-0.75)));
+        objects.add(new Bullet(10, dir.copy().rotate(0.75)));
         objects.add(new Bullet(10, dir.copy().rotate(-0.5)));
         objects.add(new Bullet(10, dir.copy().rotate(0.5)));
         cooldown=20;
@@ -102,14 +110,14 @@ class Spaceship extends GameObject{
     else if(weaponNumber==4){
       if (spacekey && cooldown <=0) {
         objects.add(new Bullet(15, 600, 15));
-        cooldown=50;
+        cooldown=45;
       }
       tpMaxCooldown=600;
     }
     else if(weaponNumber==5){
       if (spacekey && cooldown <=0) {
         objects.add(new Bullet(2, 600, 100, true));
-        cooldown=50;
+        cooldown=40;
       }
       tpMaxCooldown=120;
     }

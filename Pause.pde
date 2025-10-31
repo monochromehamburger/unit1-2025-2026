@@ -3,7 +3,7 @@ void pause() {
   fill(255);
   textSize(50);
   begin.show();
-  text("PAUSED", width/2, height/2);
+  text("PAUSED press the button to unpause (obviously)", width/2, height/2);
   if(begin.clicked){
     mode=GAME;
   }

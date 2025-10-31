@@ -64,9 +64,9 @@ void draw() {
     fill(#AB9419);
     text("NOT ASTEROIDS", width/2, height/2-400);
     text("P to Pause", width/2, height/2-300);
-    text("WASD or Arrow Keys to move", width/2, height/2-200);
+    text("WAD or Arrow Keys to move", width/2, height/2-200);
     text("Space to shoot", width/2, height/2-100);
-    text("Number Keys to Switch Modes", width/2, height/2);
+    text("1-5 Keys to Switch Modes", width/2, height/2);
     if(begin.clicked){
       mode=GAME;
       hardMode=false;
