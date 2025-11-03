@@ -97,10 +97,6 @@ class Spaceship extends GameObject{
         objects.add(new Bullet(10));
         objects.add(new Bullet(10, dir.copy().rotate(-1)));
         objects.add(new Bullet(10, dir.copy().rotate(1)));
-        objects.add(new Bullet(10, dir.copy().rotate(-0.25)));
-        objects.add(new Bullet(10, dir.copy().rotate(0.25)));
-        objects.add(new Bullet(10, dir.copy().rotate(-0.75)));
-        objects.add(new Bullet(10, dir.copy().rotate(0.75)));
         objects.add(new Bullet(10, dir.copy().rotate(-0.5)));
         objects.add(new Bullet(10, dir.copy().rotate(0.5)));
         cooldown=20;

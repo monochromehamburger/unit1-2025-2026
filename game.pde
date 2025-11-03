@@ -1,5 +1,8 @@
 void game() {
-  background(0);
+  for(int i=0;i<501;i++){
+    stroke(map(i, 0, 501, 0, 100), 0, 0);
+    line(0, i*2, width, i*2);
+  }
   int i=0;
   while (i<objects.size()) {
     GameObject currentObject=objects.get(i);
